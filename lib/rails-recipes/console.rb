@@ -8,14 +8,14 @@ Capistrano::Configuration.instance(:must_exist).load do
     task :console do
       rails_env = fetch(:rails_env, "production")
       server = find_servers(:roles => [:app]).first
-      run_with_tty server, %W( script/console #{rails_env} )
+      run_with_tty server, %W( rails console #{rails_env} )
     end
 
     desc "script/dbconsole on a remote server"
     task :dbconsole do 
       rails_env = fetch(:rails_env, "production")
       server = find_servers(:roles => [:app]).first
-      run_with_tty server, %W( script/dbconsole #{rails_env} )
+      run_with_tty server, %W( rails dbconsole #{rails_env} )
     end
 
     set :rake_cmd do
